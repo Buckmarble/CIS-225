@@ -8,19 +8,25 @@
 public class DeskCalculator
 {
     // instance variables - replace the example below with your own
-    public int price;
-    public int orderNum;
-    public String name;
-    public int length;
-    public int width;
-    public int woodType;
-    public int drawerCount;
-    public int minCharge;
-    public int surfaceBaseSize;
-    public int surfaceOverageCharge;
-    public int mahoganyExtra;
-    public int oakExtra;
-    public int drawerCharge;
+    private int price;
+    private int orderNum;
+    private String name;
+    private int length;
+    private int width;
+    private int woodType;
+    private int drawerCount;
+    //private int minCharge;
+    //private int surfaceBaseSize;
+    //private int surfaceOverageCharge;
+    //private int mahoganyExtra;
+    //private int oakExtra;
+    //private int drawerCharge;
+    private final int MIN_CHARGE = 200;
+    private final int SURFACE_BASE_SIZE = 750;
+    private final int SURFACE_OVERAGE_CHARGE = 50;
+    private final int MAHOGANY_EXTRA = 150;
+    private final int OAK_EXTRA = 125;
+    private final int DRAWER_CHARGE = 30;
 
     /**
      * Constructor for objects of class DeskCalculator
@@ -28,38 +34,51 @@ public class DeskCalculator
     public DeskCalculator()
     {
         // initialise instance variables
+        /**
         minCharge = 200;
         surfaceBaseSize = 750;
         surfaceOverageCharge = 50;
         mahoganyExtra = 150;
         oakExtra = 125;
-        drawerCharge = 30;
+        drawerCharge = 30;*/
+        orderNum++;
         price = 0;
     }
 
-    public String setName(String name)
+    public void setName(String name)
     {
         this.name = name;
+    }
+    
+    public String getName()
+    {
         return name;
     }
 
-    public int getOrderNum(int orderNum)
+    public int getOrderNum()
     {
-       this.orderNum = orderNum;
        return orderNum;
     }
     
-    public int setLength(int length)
+    public void setLength(int length)
     {
         this.length = length;
+    }
+    
+    public int getLength()
+    {
         return length;
     }
     
-    public int setWidth(int width)
+    public void setWidth(int width)
     {
         this.width = width;
-        return width;
     }    
+    
+    public int getWidth()
+    {
+        return width;
+    }
     /**
     1-pine
     2-oak
@@ -79,19 +98,19 @@ public class DeskCalculator
     
     public void calcPrice()
     {
-        price = minCharge;
+        price = MIN_CHARGE;
         
-        if((length*width)>surfaceBaseSize) {
-            price = minCharge + surfaceOverageCharge;}
+        if((length*width)>SURFACE_BASE_SIZE) {
+            price = MIN_CHARGE + SURFACE_OVERAGE_CHARGE;}
         
         if (woodType == 1) {
             price = price; }
         else if (woodType == 2) {
-            price = price + oakExtra; }
-        else if (woodType == 3) {
-            price = price + mahoganyExtra; }
+            price += OAK_EXTRA; }
+        else { 
+            price += MAHOGANY_EXTRA; }
         
-        price = price + (drawerCount*drawerCharge);
+        price += (drawerCount*DRAWER_CHARGE);
         
     }
    
